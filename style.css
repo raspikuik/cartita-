@@ -1,0 +1,86 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0e6d6;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.envelope-wrapper {
+    width: 310px;
+    height: 210px;
+    position: relative;
+    cursor: pointer;
+}
+
+.envelope {
+    width: 110%;
+    height: 110%;
+    position: relative;
+    z-index: 2;
+}
+
+.envelope .flap {
+    width: 110%;
+    height: 110%;
+    background-color: #a0a0a0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    border-bottom: 2px solid #888;
+    transform-origin: top;
+    transition: transform 0.8s ease-in-out;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.envelope .body {
+    width: 110%;
+    height: 110%;
+    background-color: #c0c0c0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.letter {
+    /* Aquí hacemos la carta más grande */
+    width: 130%; /* 10% más ancha */
+    height: 200%; /* 10% más alta */
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform-origin: bottom;
+    transition: all 1s ease-in-out;
+    opacity: 0;
+}
+
+.envelope.open .letter {
+    /* Ajustamos la posición para que la carta salga más arriba */
+    top: 20px;
+    opacity: 1;
+    z-index: 4;
+}
+
+#message-content {
+    padding: 30px;
+    text-align: center;
+    color: #333;
+    /* Reducimos el tamaño de la fuente para que el texto sea más pequeño */
+    font-size: 13px;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
